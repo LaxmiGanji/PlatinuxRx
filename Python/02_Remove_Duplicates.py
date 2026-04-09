@@ -1,16 +1,20 @@
-def remove_duplicates(input_string):
-    """
-    Takes a string and removes duplicate characters using a loop.
-    """
+def remove_duplicates(text):
+ 
     result = ""
-    for char in input_string:
+    
+    for char in text:
         if char not in result:
             result += char
-            
+    
     return result
 
+
 if __name__ == "__main__":
-    # Test cases
-    test_strings = ["hello world", "programming", "aabbccdd", "abcdef", "Google"]
-    for s in test_strings:
-        print(f"Original: '{s}' -> No Duplicates: '{remove_duplicates(s)}'")
+
+    user_input = input("Enter a string: ")
+    
+    unique_string = remove_duplicates(user_input)
+    
+    print(f"Original string: '{user_input}'")
+    print(f"Unique string:   '{unique_string}'")
+    print(f"Characters removed: {len(user_input) - len(unique_string)}")

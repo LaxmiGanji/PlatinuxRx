@@ -1,19 +1,31 @@
 def convert_minutes(total_minutes):
-    """
-    Converts integer minutes into 'X hrs Y minutes' format.
-    """
+
     try:
         total_minutes = int(total_minutes)
     except ValueError:
         return "Invalid input. Please provide an integer."
-        
+    
+    if total_minutes < 0:
+        return "Invalid input. Minutes cannot be negative."
+    
     hours = total_minutes // 60
     minutes = total_minutes % 60
     
-    return f"{hours} hrs {minutes} minutes"
+    hour_text = "hr" if hours == 1 else "hrs"
+    minute_text = "minute" if minutes == 1 else "minutes"
+    
+    if hours == 0 and minutes == 0:
+        return "0 minutes"
+    elif hours == 0:
+        return f"{minutes} {minute_text}"
+    elif minutes == 0:
+        return f"{hours} {hour_text}"
+    else:
+        return f"{hours} {hour_text} {minutes} {minute_text}"
+
 
 if __name__ == "__main__":
-    # Test cases
-    test_values = [130, 60, 45, 0, 1500]
-    for val in test_values:
-        print(f"{val} minutes = {convert_minutes(val)}")
+    user_input = input("Enter minutes: ")
+    
+    result = convert_minutes(user_input)
+    print(f"\nResult: {result}")
